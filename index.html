@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+        header{
+            display:flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+        }
+        h1{
+            margin-bottom: 70px;
+            font-size: 45px;
+            color: rgb(36, 122, 113);
+        }
+        div{
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        #main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 340px;
+            height: 400px;
+            padding-bottom: 20px;
+        }
+        #main>div:first-child{
+            height: 60px;
+            width: 258px;
+            margin-top: 1rem;
+            margin-bottom: 10px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        #main>div:last-child{
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 6px;
+            box-shadow: none;
+        }
+        #main>div:last-child>div{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #main>div:last-child>div:nth-child(4),
+        #main>div:last-child>div:nth-child(8),
+        #main>div:last-child>div:nth-child(12),
+        #main>div:last-child>div:nth-child(16),
+        #main>div:last-child>div:nth-child(2),
+        #main>div:last-child>div:nth-child(3)
+        {
+            background-color: black;
+            color: white;
+        }
+        #main>div:last-child>div:first-child{
+            background-color: red;
+            color: white;
+        }
+        #name{
+            color: rgb(253, 157, 55);
+            text-align: end;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Mihir's Calculator</h1>
+    <div id="main">
+        <div id="result"></div>
+        <div>
+            <div id="C">C</div>
+            <div id="back">&lt</div>
+            <div id="equal">=</div>
+            <div class="symbol btn">+</div>
+            
+            <div class="number btn ">1</div>
+            <div class="number btn ">2</div>
+            <div class="number btn">3</div>
+            <div class="symbol btn">-</div>
+            <div class="number btn">4</div>
+            <div class="number btn">5</div>
+            <div class="number btn">6</div>
+            <div class="symbol btn">x</div>
+            <div class="number btn">7</div>
+            <div class="number btn">8</div>
+            <div class="number btn">9</div>
+            <div class="symbol btn">/</div>
+            <div>00</div>
+            <div class="number btn">0</div>
+            <div>.</div>
+        </div>
+    </div>
+</header>
+    <p id="name">&ltMade by: MIHIR SONI/&gt</p>
+</body>
+<script>
+    let result = document.getElementById("result");
+    let number = document.getElementsByClassName("number");
+    let symbol = document.getElementsByClassName("symbol");
+    let equal = document.getElementById("equal");
+    let C = document.getElementById("C");
+    let back = document.getElementById("back");
+
+
+    result.innerText="";
+    let btn = document.querySelectorAll(".btn");
+    
+    for(let i=0; i<btn.length; i++) btn[i].addEventListener("click", ()=> result.innerText += btn[i].innerText);
+
+    C.addEventListener("click", ()=> result.innerText="");
+    
+    back.addEventListener("click", ()=>{
+        result.innerText=result.innerText.slice(0,result.innerText.length-1)
+    })
+    equal.addEventListener("click", ()=> {
+        let newresult = result.innerText.replaceAll("x", "*");
+        result.innerText = eval(newresult)
+    });
+</script>
+</html>
